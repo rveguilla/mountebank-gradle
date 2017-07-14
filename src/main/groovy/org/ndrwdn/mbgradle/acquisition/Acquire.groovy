@@ -6,7 +6,9 @@ import org.apache.commons.compress.archivers.tar.TarArchiveEntry
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import org.gradle.api.Project
 
+import java.nio.file.CopyOption
 import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import java.util.zip.GZIPInputStream
 
 import static groovyx.net.http.ContentType.BINARY
@@ -67,7 +69,8 @@ class Acquire {
                         .mkdirs()
                 Files.move(
                         mbDownloadPath.resolve("mountebank-v1.9.0-${determineMbOs()}-x64"),
-                        mbPath(project))
+                        mbPath(project),
+                        StandardCopyOption.REPLACE_EXISTING)
             }
         }
     }
